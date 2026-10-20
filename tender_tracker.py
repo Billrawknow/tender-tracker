@@ -33,7 +33,7 @@ import requests
 BASE_URL = "https://tenders.go.ke"
 API_URL = f"{BASE_URL}/api/active-tenders"
 PER_PAGE = 100
-MAX_PAGES = 20          # safety limit: up to 2,000 tenders
+MAX_PAGES = 100         # safety limit, in case the portal ignores perpage
 TIMEOUT = 20            # seconds - the portal can be slow
 CATEGORIES = {"1": "Goods", "2": "Works", "3": "Services", "": None}
 LINE = "=" * 64
@@ -97,6 +97,7 @@ def fetch_all_active_tenders():
     print(f"Found {first.get('total', len(tenders))} active tenders on PPIP. Downloading...")
     for page in range(2, last_page + 1):
         tenders.extend(fetch_page(page)["data"])
+    print(f"Downloaded {len(tenders)} tenders. Filtering...")
     return tenders
 
 
@@ -158,7 +159,8 @@ def matches(t, keywords, category, posted_since, now):
         return False                       # already closed
     if posted and posted < posted_since:
         return False                       # too old
-    if category and title_of(t.get("procurement_category")).lower() != category.lower():
+    # "in" so that "Services" also matches "Consultancy Services" etc.
+    if category and category.lower() not in title_of(t.get("procurement_category")).lower():
         return False
     if keywords:
         text = f"{t.get('title', '')} {(t.get('pe') or {}).get('name', '')}".lower()
@@ -201,7 +203,7 @@ def print_tender(n, s, now):
     elif req["bid_security_percent"]:
         print(f"      - Bid security:   {req['bid_security_percent']}% of bid value")
     else:
-        print("      - Bid security:   Not required")
+        print("      - Bid security:   Not stated on PPIP - check the tender document")
     if req["submission"]:
         print(f"      - Submit by:      {', '.join(req['submission'])}")
     if req["bid_validity_days"]:

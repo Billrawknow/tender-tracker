@@ -39,48 +39,72 @@ python tender_tracker.py
 
 ## Example output
 
+A real run on 20 October 2026:
+
 ```
 Kenya Government Tender Tracker
 -------------------------------
-Keywords for your business (comma-separated, blank = all): computer, ict
+Keywords for your business (comma-separated, blank = all): ICT
 Category:  1) Goods   2) Works   3) Services   [Enter] Any
-Choose:
-Show tenders posted in the last how many days? [14]:
-Found 428 active tenders on PPIP. Downloading...
+Choose: 2
+Show tenders posted in the last how many days? [14]: 30
+Found 414 active tenders on PPIP. Downloading...
+Downloaded 414 tenders. Filtering...
 
 ================================================================
-  2 open tender(s) for: computer, ict  ·  posted in last 14 days
+  3 open tender(s) for: ict  ·  Works  ·  posted in last 30 days
 ================================================================
 
-[1] PROVISION OF ICT SUPPORT SERVICES
-    Entity:        KENYA REVENUE AUTHORITY (Nairobi)
-    Category:      Services  ·  Open Tender
-    Tender no.:    REF/3/2026
-    Posted:        Sun 18 Oct 2026
-    Closes:        Mon 19 Oct 2026, 07:32 PM  (7 hours left - URGENT)
+[1] SUPPLY, DELIVERY, INSTALLATION, TESTING, COMMISSIONING AND MAINTENANCE OF A SOLAR POWERED BACK UP AT ICT HUBS AND MUNICIPALITY SERVER ROOM. (BAHARI, HONGWE, MANDA, MKUNUMBI, FAZA)
+    Entity:        Lamu County Government
+    Category:      Works  ·  Open Tender
+    Tender no.:    CGL/ONT/ICT/SP/007/2026-2027
+    Posted:        Mon 19 Oct 2026
+    Closes:        Tue 03 Nov 2026, 11:00 AM  (13 days left)
     Requirements:
       - Tender fee:     None
-      - Bid security:   Not required
-      - Submit by:      Electronic (e-Procurement)
-      - Bid valid for:  180 days
-      - AGPO reserved:  Yes (Persons with Disabilities)
-      - Note:           An addendum was issued - read it before bidding
-    Tender Document: https://tenders.go.ke/storage/Documents/...pdf
-    OCID:          ocds-5whusi-...  (search this on tenders.go.ke)
-...
-Results saved to tenders_20261019_1220.json
+      - Bid security:   Not stated on PPIP - check the tender document
+      - Submit by:      Electronic submission
+      - Bid valid for:  120 days
+    Tender Notice: https://tenders.go.ke/storage/Documents/1792436418978-supply-delivery-installation-testing-commissioning-and-maintenance-of-a-solar-powered-.pdf
+    Tender Document: https://tenders.go.ke/storage/Documents/1792436419008-supply-delivery-installation-testing-commissioning-and-maintenance-of-a-solar-powered-.pdf
+    Additional Documents: https://tenders.go.ke/storage/Documents/1792436419017-bq.pdf
+    OCID:          ocds-5whusi-309148-CGL/ONT/ICT/SP/007/2026-2027  (search this on tenders.go.ke)
+
+[2] CONSTRUCTION OF BASIC DIGITAL HUB AT SINYERERI DIGITAL ICT HUB
+    Entity:        NGCDF CHERANGANY (KITALE)
+    Category:      Works  ·  Open Tender
+    Tender no.:    SINYECHEF/01/2026-2027
+    Posted:        Tue 13 Oct 2026
+    Closes:        Wed 21 Oct 2026, 10:30 AM  (22 hours left - URGENT)
+    Requirements:
+      - Tender fee:     None
+      - Bid security:   Not stated on PPIP - check the tender document
+      - Submit by:      Written (Physical/Hard Copy)
+      - Bid valid for:  120 days
+    Tender Document: https://tenders.go.ke/storage/Documents/1791980431673-tender-documents.pdf
+    Tender Notice: https://tenders.go.ke/storage/Documents/1792051324492-tender-notice.pdf
+    OCID:          ocds-5whusi-308671-SINYECHEF/01/2026-2027  (search this on tenders.go.ke)
+
+[3] Refurbishment Works for Huduma Centres in Borderland Areas
+    Entity:        ICT Authority (Nairobi)
+    ...
+
+================================================================
+
+Results saved to tenders_20261020_1228.json
 ```
 
 ## Errors handled
 
-| Situation | What you see |
-|---|---|
-| No internet / portal unreachable | "Couldn't connect to tenders.go.ke. Check your internet connection." |
-| Portal slow (timeout) | Asks you to try again in a minute |
-| Portal down (HTTP 5xx) or rate limiting (429) | Plain-English explanation |
-| Portal sends non-JSON or changes its format | Says the portal may be under maintenance, or the tool needs updating |
-| Invalid category or number of days | Explains what to type instead |
-| No matching tenders | Suggests broader keywords or more days |
+| Situation                                     | What you see                                                         |
+| --------------------------------------------- | -------------------------------------------------------------------- |
+| No internet / portal unreachable              | "Couldn't connect to tenders.go.ke. Check your internet connection." |
+| Portal slow (timeout)                         | Asks you to try again in a minute                                    |
+| Portal down (HTTP 5xx) or rate limiting (429) | Plain-English explanation                                            |
+| Portal sends non-JSON or changes its format   | Says the portal may be under maintenance, or the tool needs updating |
+| Invalid category or number of days            | Explains what to type instead                                        |
+| No matching tenders                           | Suggests broader keywords or more days                               |
 
 ## Privacy
 
