@@ -106,6 +106,14 @@ Results saved to tenders_20261020_1228.json
 | Invalid category or number of days            | Explains what to type instead                                        |
 | No matching tenders                           | Suggests broader keywords or more days                               |
 
+## Assumptions and limitations
+
+- **Data source:** tenders come from the PPIP portal's public JSON endpoint (`tenders.go.ke/api/active-tenders`). That endpoint is used by the portal's own website but isn't officially documented, so PPRA could change it without notice. All PPIP-specific code is in `fetch_page()` and `summarise()`, so a change only affects those two functions.
+- **Keyword matching** looks at the tender title and the procuring entity's name, not the text inside tender documents.
+- **Bid security:** when PPIP leaves bid security blank, the tool says "Not stated on PPIP - check the tender document" instead of assuming none is required. Always confirm requirements in the tender document before bidding.
+- **Dates** are shown as published on PPIP, in Kenyan time (EAT).
+- **Jobs and other opportunities** are not covered in this version. See the roadmap.
+
 ## Privacy
 
 The PPIP API response includes personal details of the government officer who posted each tender: national ID number, phone numbers and personal emails. **This tool deliberately drops all of that.** It keeps only public tender information and the procuring entity's official contact details.
@@ -115,6 +123,10 @@ The PPIP API response includes personal details of the government officer who po
 - Government **job vacancies** (Public Service Commission and ministries)
 - Email or WhatsApp alerts when a new matching tender is posted
 - Extract detailed eligibility requirements from the tender document PDFs
+
+## Version
+
+**v1.0** (20 October 2026): first delivered release. Tagged on GitHub as `v1.0`.
 
 ## Built with
 
